@@ -41,7 +41,8 @@
 			sessionId: "data-session-id",
 			time: "data-time",
 			lastTime: "data-last-change-time",
-			changeData: "data-changedata" // arbitrary data to associate with the node, e.g. version
+			changeData: "data-changedata", // arbitrary data to associate with the node, e.g. version
+			updatedData:""
 		},
 
 			classes: {
@@ -1209,6 +1210,7 @@
 			if (!this._changes[changeid]) {
 				var now =  (new Date()).getTime();
 				// Create the change object.
+				
 				this._changes[changeid] = {
 					type: ctnType,
 					time: now,
@@ -2735,6 +2737,7 @@
 				var sessionId = el.getAttribute(this.attributes.sessionId);
 			
 				var changeData = el.getAttribute(this.attributes.changeData) || "";
+				var updatedData=$(el).text();
 				this._changes[changeid] = {
 					type: ctnType,
 					style: styleName,
@@ -2743,7 +2746,8 @@
 					time: timeStamp,
 					lastTime: lastTimeStamp,
 					sessionId: sessionId,
-					data : changeData
+					data : changeData,
+					updatedData:updatedData
 				};
 				this._updateNodeTooltip(el);
 			}.bind(this);
